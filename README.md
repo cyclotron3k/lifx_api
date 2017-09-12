@@ -1,8 +1,8 @@
 # LifxApi
 
-A Ruby client for the Lifx API.
+A Ruby client for the LIFX API.
 
-This provides access to the [Lifx HTTP API](https://api.developer.lifx.com/), so it can control your lights from anywhere in the world. It does not implement the [LAN API](https://lan.developer.lifx.com/).
+This provides access to the [LIFX HTTP API](https://api.developer.lifx.com/), so it can control your lights from anywhere in the world. It does not implement the [LAN API](https://lan.developer.lifx.com/).
 
 ## Installation
 
@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-You'll need to have some Lifx bulbs already setup and configured. Then you will need to obtain an `access_token` from the [Lifx website](https://cloud.lifx.com/sign_in).
+You'll need to have some LIFX bulbs already setup and configured. Then you will need to obtain an `access_token` from the [LIFX website](https://cloud.lifx.com/sign_in).
 
 ```ruby
 require 'lifx_api'
@@ -40,7 +40,7 @@ client.toggle_power selector: "id:#{light_id}"
 
 ## Endpoints and parameters
 
-### TODO. See [Lifx HTTP API](https://api.developer.lifx.com/) in the mean time
+### TODO. See [LIFX HTTP API](https://api.developer.lifx.com/) in the mean time
 
 ## Deviation from the API spec
 

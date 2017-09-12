@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
 	spec.version       = LifxApi::VERSION
 	spec.authors       = "cyclotron3k"
 
-	spec.summary       = "A client for the Lifx HTTP API"
+	spec.summary       = "A client for the LIFX HTTP API"
 	spec.homepage      = "https://github.com/cyclotron3k/lifx_api"
 	spec.license       = "MIT"
 

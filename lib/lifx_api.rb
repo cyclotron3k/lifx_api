@@ -63,7 +63,7 @@ class LifxApi
 		when :uuid
 			value.is_a?(String) and value =~ /^[\da-f]{4}([\da-f]{4}-){4}[\da-f]{12}$/
 		else
-			puts "Don't know how to validate #{value_format}"
+			puts "Don't know how to validate #{value_format}" if DEBUG
 			true
 		end
 	end
