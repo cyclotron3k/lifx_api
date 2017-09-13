@@ -40,7 +40,123 @@ client.toggle_power selector: "id:#{light_id}"
 
 ## Endpoints and parameters
 
-### TODO. See [LIFX HTTP API](https://api.developer.lifx.com/) in the mean time
+See [LIFX HTTP API](https://api.developer.lifx.com/) for the official documentation.
+
+### list_lights
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:selector* | selector | &#10004; | all | 
+
+### set_state
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:selector* | selector | &#10004; | all | 
+*:power* | string |  |  | The power state you want to set on the selector. on or off
+*:color* | string |  |  | The color to set the light to.
+*:brightness* | numeric |  |  | The brightness level from 0.0 to 1.0. Overrides any brightness set in color (if any).
+*:duration* | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: 0.0 - 3155760000.0 (100 years)
+*:infrared* | numeric |  |  | The maximum brightness of the infrared channel.
+
+### set_states
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:states* |  | &#10004; |  | 
+*:defaults* | hash |  |  | 
+
+### stage_delta
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:selector* | selector | &#10004; | all | 
+*:power* | on_off |  |  | The power state you want to set on the selector. on or off
+*:duration* | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: 0.0 - 3155760000.0 (100 years)
+*:infrared* | numeric |  |  | The maximum brightness of the infrared channel.
+*:hue* | numeric |  |  | Rotate the hue by this angle in degrees.
+*:saturation* | numeric |  |  | Change the saturation by this additive amount; the resulting saturation is clipped to [0, 1].
+*:brightness* | numeric |  |  | Change the brightness by this additive amount; the resulting brightness is clipped to [0, 1].
+*:kelvin* | numeric |  |  | Change the kelvin by this additive amount; the resulting kelvin is clipped to [2500, 9000].
+
+### toggle_power
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:selector* | selector | &#10004; | all | 
+*:duration* | numeric |  | 1.0 | The time is seconds to spend perfoming the power toggle.
+
+### breathe_effect
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:selector* | selector | &#10004; | all | 
+*:color* | string | &#10004; |  | The color to use for the breathe effect.
+*:from_color* | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
+*:period* | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
+*:cycles* | numeric |  | 1.0 | The number of times to repeat the effect.
+*:persist* | boolean |  | false | If false set the light back to its previous value when effect ends, if true leave the last effect color.
+*:power_on* | boolean |  | true | If true, turn the bulb on if it is not already on.
+*:peak* | numeric |  | 0.5 | Defines where in a period the target color is at its maximum. Minimum 0.0, maximum 1.0.
+
+### pulse_effect
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:selector* | selector | &#10004; | all | 
+*:color* | string | &#10004; |  | The color to use for the pulse effect.
+*:from_color* | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
+*:period* | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
+*:cycles* | numeric |  | 1.0 | The number of times to repeat the effect.
+*:persist* | boolean |  | false | If false set the light back to its previous value when effect ends, if true leave the last effect color.
+*:power_on* | boolean |  | true | If true, turn the bulb on if it is not already on.
+
+### cycle
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:states* | array of mixed | &#10004; |  | Array of state hashes as per Set State. Must have 2 to 5 entries.
+*:defaults* | object |  |  | Default values to use when not specified in each states[] object.
+*:direction* | stringforward |  |  | Direction in which to cycle through the list. Can be forward or backward
+
+### list_scenes
+
+*No parameters*
+
+### activate_scene
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:scene_uuid* | uuid | &#10004; |  | The UUID for the scene you wish to activate
+*:duration* | numeric |  | 1.0 | The time in seconds to spend performing the scene transition.
+*:ignore* | array of strings |  |  | Any of "power", "infrared", "duration", "intensity", "hue", "saturation", "brightness" or "kelvin", specifying that these properties should not be changed on devices when applying the scene.
+*:overrides* | object |  |  | A state object as per Set State specifying properties to apply to all devices in the scene, overriding those configured in the scene.
+
+### validate_color
+
+#### Parameters
+
+Key | Type | Mandatory | Default | Description
+--- | --- | --- | --- | ---
+*:color* | string | &#10004; |  |
 
 ## Deviation from the API spec
 
