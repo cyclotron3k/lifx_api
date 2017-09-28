@@ -48,7 +48,7 @@ See [LIFX HTTP API](https://api.developer.lifx.com/) for the official documentat
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all |
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
 
 ### set_state
 
@@ -56,7 +56,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all |
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
 `:power` | string |  |  | The power state you want to set on the selector. on or off
 `:color` | string |  |  | The color to set the light to.
 `:brightness` | numeric |  |  | The brightness level from 0.0 to 1.0. Overrides any brightness set in color (if any).
@@ -69,8 +69,8 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:states` |  | &#10004; |  |
-`:defaults` | hash |  |  |
+`:states` |  array of states | &#10004; |  | Array of state hashes as per `#set_state`. No more than 50 entries.
+`:defaults` | hash |  |  | Default values to use when not specified in each `states[]` hash.
 
 ### stage_delta
 
@@ -78,8 +78,8 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all |
-`:power` | on_off |  |  | The power state you want to set on the selector. on or off
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:power` | string |  |  | The power state you want to set on the selector. Must be "on" or "off".
 `:duration` | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: 0.0 - 3155760000.0 (100 years)
 `:infrared` | numeric |  |  | The maximum brightness of the infrared channel.
 `:hue` | numeric |  |  | Rotate the hue by this angle in degrees.
@@ -93,7 +93,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all |
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
 `:duration` | numeric |  | 1.0 | The time is seconds to spend perfoming the power toggle.
 
 ### breathe_effect
@@ -102,7 +102,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all |
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
 `:color` | string | &#10004; |  | The color to use for the breathe effect.
 `:from_color` | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
@@ -117,7 +117,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all |
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
 `:color` | string | &#10004; |  | The color to use for the pulse effect.
 `:from_color` | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
@@ -131,9 +131,9 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:states` | array of mixed | &#10004; |  | Array of state hashes as per Set State. Must have 2 to 5 entries.
-`:defaults` | object |  |  | Default values to use when not specified in each states[] object.
-`:direction` | stringforward |  |  | Direction in which to cycle through the list. Can be forward or backward
+`:states` | array of states | &#10004; |  | Array of state hashes as per `#set_state`. Must have 2 to 5 entries.
+`:defaults` | hash |  |  | Default values to use when not specified in each states[] object.
+`:direction` | string |  |  | Direction in which to cycle through the list. Can be "forward" or "backward".
 
 ### list_scenes
 
@@ -148,7 +148,7 @@ Key | Type | Mandatory | Default | Description
 `:scene_uuid` | uuid | &#10004; |  | The UUID for the scene you wish to activate
 `:duration` | numeric |  | 1.0 | The time in seconds to spend performing the scene transition.
 `:ignore` | array of strings |  |  | Any of "power", "infrared", "duration", "intensity", "hue", "saturation", "brightness" or "kelvin", specifying that these properties should not be changed on devices when applying the scene.
-`:overrides` | object |  |  | A state object as per Set State specifying properties to apply to all devices in the scene, overriding those configured in the scene.
+`:overrides` | hash |  |  | A state object as per Set State specifying properties to apply to all devices in the scene, overriding those configured in the scene.
 
 ### validate_color
 
@@ -156,11 +156,11 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:color` | string | &#10004; |  |
+`:color` | string | &#10004; |  | Color string you'd like to validate
 
 ## Deviation from the API spec
 
-Some API endpoints require a mandatory [`selector`](https://api.developer.lifx.com/docs/selectors) parameter, which defines which bulbs to apply your action to. This client will default the `selector` parameter to `'all`', if no selector is provided.
+Some API endpoints require a mandatory [`selector`](https://api.developer.lifx.com/docs/selectors) parameter, which defines which bulbs to apply your action to. This client will default the `selector` parameter to `'all'`, if no selector is provided.
 
 ```ruby
 # which means that you can call
@@ -181,7 +181,7 @@ Run `rake test` to run the tests and `rake console` to start an interactive pry 
 
 ## TODO
 
-* Validation of `:state' and ':array_of_states' is poor
+* Validation of `:state` and `:array_of_states` is poor
 * Validation of endpoints is non-existent
 
 ## Contributing
