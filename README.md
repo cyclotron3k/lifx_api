@@ -48,7 +48,7 @@ See [LIFX HTTP API](https://api.developer.lifx.com/) for the official documentat
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | 
+`:selector` | selector |  | all |
 
 ### set_state
 
@@ -56,7 +56,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | 
+`:selector` | selector |  | all |
 `:power` | string |  |  | The power state you want to set on the selector. on or off
 `:color` | string |  |  | The color to set the light to.
 `:brightness` | numeric |  |  | The brightness level from 0.0 to 1.0. Overrides any brightness set in color (if any).
@@ -69,8 +69,8 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:states` |  | &#10004; |  | 
-`:defaults` | hash |  |  | 
+`:states` |  | &#10004; |  |
+`:defaults` | hash |  |  |
 
 ### stage_delta
 
@@ -78,7 +78,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | 
+`:selector` | selector |  | all |
 `:power` | on_off |  |  | The power state you want to set on the selector. on or off
 `:duration` | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: 0.0 - 3155760000.0 (100 years)
 `:infrared` | numeric |  |  | The maximum brightness of the infrared channel.
@@ -93,7 +93,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | 
+`:selector` | selector |  | all |
 `:duration` | numeric |  | 1.0 | The time is seconds to spend perfoming the power toggle.
 
 ### breathe_effect
@@ -102,7 +102,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | 
+`:selector` | selector |  | all |
 `:color` | string | &#10004; |  | The color to use for the breathe effect.
 `:from_color` | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
@@ -117,7 +117,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | 
+`:selector` | selector |  | all |
 `:color` | string | &#10004; |  | The color to use for the pulse effect.
 `:from_color` | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
@@ -178,6 +178,11 @@ If there is an error, LifxApi will raise an exception. The exception message wil
 ## Development
 
 Run `rake test` to run the tests and `rake console` to start an interactive pry console.
+
+## TODO
+
+* Validation of `:state' and ':array_of_states' is poor
+* Validation of endpoints is non-existent
 
 ## Contributing
 

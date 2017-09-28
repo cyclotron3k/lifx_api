@@ -49,21 +49,31 @@ class LifxApi
 	def valid?(value, value_format)
 		case value_format
 		when :selector
-			value =~ /^((label|id|(location|group)(_id)?|scene_id):.*|all)$/
-		when :numeric
-			value.is_a?(Numeric) or value =~ /^[\d\.]+$/
+			value.split(',').all? do |selector|
+				/^((label|id|(location|group)(_id)?|scene_id):.*|all)(:random|(\|[-\d]+)+)?$/ === selector
+			end
+		when :numeric, :brightness, :duration, :infrared
+			value.is_a?(Numeric) or /^[\d\.]+$/ === value
 		when :boolean
 			['true', 'false', true, false].include? value
-		when :on_off
+		when :on_off, :power
 			['on', 'off'].include? value
 		when :hash
 			value.is_a? Hash
-		when :string
+		when :string, :color
 			value.is_a? String
 		when :uuid
-			value.is_a?(String) and value =~ /^[\da-f]{4}([\da-f]{4}-){4}[\da-f]{12}$/
+			value.is_a?(String) and /^[\da-f]{4}([\da-f]{4}-){4}[\da-f]{12}$/ === value
+		when :ignore_array
+			value.is_a?(Array) and (value - ['power', 'infrared', 'duration', 'intensity', 'hue', 'saturation', 'brightness', 'kelvin']).empty?
+		when :direction
+			value.is_a?(String) and ['forward', 'backward'].include? value
+		when :array_of_states
+			value.is_a?(Array) and value.count <= 50 and value.all? { |state| valid? state, :state }
+		when :state
+			value.is_a?(Hash) and (value.keys - [:selector, :power, :color, :brightness, :duration, :infrared]).empty? and value.all? { |k, v| valid? v, k }
 		else
-			puts "Don't know how to validate #{value_format}" if DEBUG
+			raise ArgumentError, "Don't know how to validate #{value_format}"
 			true
 		end
 	end

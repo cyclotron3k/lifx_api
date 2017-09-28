@@ -25,7 +25,7 @@ class LifxApi
 		http_method: :put,
 		path: '/v1/lights/states',
 		body_params: {
-			states: {required: true},
+			states: {required: true, type: :array_of_states},
 			defaults: {type: :hash},
 		},
 	}, {
@@ -90,9 +90,9 @@ class LifxApi
 		http_method: :post,
 		path: '/v1/lights/%{selector}/cycle',
 		body_params: {
-			states: {required: true, type: 'array of mixed', description: 'Array of state hashes as per Set State. Must have 2 to 5 entries.'},
-			defaults: {type: 'object', description: 'Default values to use when not specified in each states[] object.'},
-			direction: {type: 'stringforward', description: 'Direction in which to cycle through the list. Can be forward or backward'},
+			states: {required: true, type: :array_of_states, description: 'Array of state hashes as per Set State. Must have 2 to 5 entries.'},
+			defaults: {type: :state, description: 'Default values to use when not specified in each states[] object.'},
+			direction: {type: :direction, description: 'Direction in which to cycle through the list. Can be forward or backward'},
 		}
 	}, {
 		method_name: :list_scenes,
@@ -107,8 +107,8 @@ class LifxApi
 		},
 		body_params: {
 			duration: {type: :numeric, default_description: '1.0', description: 'The time in seconds to spend performing the scene transition.'},
-			ignore: {type: 'array of strings', description: 'Any of "power", "infrared", "duration", "intensity", "hue", "saturation", "brightness" or "kelvin", specifying that these properties should not be changed on devices when applying the scene.'},
-			overrides: {type: 'object', description: 'A state object as per Set State specifying properties to apply to all devices in the scene, overriding those configured in the scene.'},
+			ignore: {type: :ignore_array, description: 'Any of "power", "infrared", "duration", "intensity", "hue", "saturation", "brightness" or "kelvin", specifying that these properties should not be changed on devices when applying the scene.'},
+			overrides: {type: :state, description: 'A state object as per Set State specifying properties to apply to all devices in the scene, overriding those configured in the scene.'},
 		}
 	}, {
 		method_name: :validate_color,

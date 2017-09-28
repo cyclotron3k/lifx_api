@@ -1,0 +1,15 @@
+=== 0.1.2
+
+* Better validation of :selectors
+
+* Unit tests for validators
+
+* Fix some errors in the endpoints definition
+
+=== 0.1.1
+
+* Added endpoint documentation
+
+=== 0.0.1
+
+* Initial release
