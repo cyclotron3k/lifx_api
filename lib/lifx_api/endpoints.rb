@@ -89,6 +89,9 @@ class LifxApi
 		method_name: :cycle,
 		http_method: :post,
 		path: '/v1/lights/%{selector}/cycle',
+		path_params: {
+			selector: {required: true, type: :selector, default: 'all'},
+		},
 		body_params: {
 			states: {required: true, type: :array_of_states, description: 'Array of state hashes as per Set State. Must have 2 to 5 entries.'},
 			defaults: {type: :state, description: 'Default values to use when not specified in each states[] object.'},

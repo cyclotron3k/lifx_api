@@ -131,6 +131,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
 `:states` | array of states | &#10004; |  | Array of state hashes as per `#set_state`. Must have 2 to 5 entries.
 `:defaults` | hash |  |  | Default values to use when not specified in each states[] object.
 `:direction` | string |  |  | Direction in which to cycle through the list. Can be "forward" or "backward".
