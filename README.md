@@ -1,4 +1,4 @@
-# LifxApi
+# LifxApi [![Build Status](https://travis-ci.org/cyclotron3k/lifx_api.svg?branch=master)](https://travis-ci.org/cyclotron3k/lifx_api)
 
 A Ruby client for the LIFX API.
 
