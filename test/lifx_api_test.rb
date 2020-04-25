@@ -196,6 +196,20 @@ class LifxApiTest < Minitest::Test
 		end
 	end
 
+	def test_array_of_colors_validation
+		lifx = LifxApi.new 'access_token'
+
+		{
+			['red', 'blue', 'green'] => true,
+			['#ff0000'] => true,
+			[123] => false,
+			['red', 123] => false,
+			{} => false,
+			nil => false,
+		}.each do |selector, expected_result|
+			assert_equal expected_result, lifx.send(:valid?, selector, :array_of_colors), "#{selector} failed :array_of_colors validation"
+		end
+	end
 
 	def test_validators_exist_for_all_data_types
 		lifx = LifxApi.new 'access_token'

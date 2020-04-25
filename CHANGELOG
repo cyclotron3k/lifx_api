@@ -1,3 +1,12 @@
+=== 0.2.0
+
+* Add `fast` parameter to `LifxApi#set_state` and `LifxApi#set_states`
+* Add `LifxApi#state_delta`, and deprecate `LifxApi#stage_delta`
+* Add `LifxApi#move_effect`
+* Add `LifxApi#morph_effect`
+* Add `LifxApi#flame_effect`
+* Add `LifxApi#effects_off`
+
 === 0.1.3
 
 * Fix documentation and specification of `cycle` endpoint

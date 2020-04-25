@@ -24,6 +24,9 @@ class LifxApi
 
 	ENDPOINTS.each do |endpoint_spec|
 		define_method endpoint_spec[:method_name], Proc.new { |params={}|
+			if endpoint_spec[:deprecation_message]
+				warn "[DEPRECATED] #{endpoint_spec[:deprecation_message]}"
+			end
 			parsed_params = parse_params endpoint_spec, params
 			request = create_request endpoint_spec, parsed_params
 			process_request request
@@ -70,6 +73,8 @@ class LifxApi
 			value.is_a?(String) and ['forward', 'backward'].include? value
 		when :array_of_states
 			value.is_a?(Array) and value.count <= 50 and value.all? { |state| valid? state, :state }
+		when :array_of_colors
+			value.is_a?(Array) and value.all? { |state| valid? state, :color }
 		when :state
 			value.is_a?(Hash) and (value.keys - [:selector, :power, :color, :brightness, :duration, :infrared]).empty? and value.all? { |k, v| valid? v, k }
 		else
