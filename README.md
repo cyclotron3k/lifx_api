@@ -48,7 +48,7 @@ See [LIFX HTTP API](https://api.developer.lifx.com/) for the official documentat
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 
 ### set_state
 
@@ -56,11 +56,11 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:power` | string |  |  | The power state you want to set on the selector. Must be `on` or `off`.
-`:color` | color |  |  | The color to set the light to.
+`:color` | color |  |  | The color to set the light to. See [color](https://api.developer.lifx.com/docs/colors) documentation on the LIFX website.
 `:brightness` | numeric |  |  | The brightness level from 0.0 to 1.0. Overrides any brightness set in color (if any).
-`:duration` | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: 0.0 - 3155760000.0 (100 years)
+`:duration` | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: `0.0` - `3155760000.0` (100 years)
 `:infrared` | numeric |  |  | The maximum brightness of the infrared channel from `0.0` to `1.0`.
 `:fast` | boolean |  | false | Execute the query fast, without initial state checks and wait for no results.
 
@@ -80,7 +80,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:power` | string |  |  | The power state you want to set on the selector. Must be `on` or `off`.
 `:duration` | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: `0.0` - `3155760000.0` (100 years)
 `:infrared` | numeric |  |  | The maximum brightness of the infrared channel.
@@ -96,7 +96,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:power` | string |  |  | The power state you want to set on the selector. Must be `on` or `off`.
 `:duration` | numeric |  | 1.0 | How long in seconds you want the power action to take. Range: `0.0` - `3155760000.0` (100 years)
 `:infrared` | numeric |  |  | The maximum brightness of the infrared channel.
@@ -111,7 +111,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:duration` | numeric |  | 1.0 | The time is seconds to spend perfoming the power toggle.
 
 ### breathe_effect
@@ -120,8 +120,8 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
-`:color` | color | &#10004; |  | The color to use for the breathe effect.
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
+`:color` | color | &#10004; |  | The color to use for the breathe effect. See [color](https://api.developer.lifx.com/docs/colors) documentation on the LIFX website.
 `:from_color` | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
 `:cycles` | numeric |  | 1.0 | The number of times to repeat the effect.
@@ -135,7 +135,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:direction` | string |  | forward | Move direction, can be `forward` or `backward`.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
 `:cycles` | numeric |  | infinite | The number of times to move the pattern across the device. Special cases are `0` to switch the effect off, and unspecified to continue indefinitely.
@@ -147,7 +147,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:period` | numeric |  | 5.0 | This controls how quickly the morph runs. It is measured in seconds. A lower number means the animation is faster.
 `:duration` | numeric |  | infinite | How long the animation lasts for in seconds. Not specifying a duration makes the animation never stop. Specifying `0` makes the animation stop. Note that there is a known bug where the tile remains in the animation once it has completed if duration is nonzero.
 `:palette` | array of colors |  | 7 colours across the spectrum | You can control the colors in the animation by specifying a list of color specifiers. For example `["red", "hue:100 saturation:1"]`.
@@ -159,7 +159,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:period` | numeric |  | 5.0 | This controls how quickly the flame runs. It is measured in seconds. A lower number means the animation is faster.
 `:duration` | numeric |  | infinite | How long the animation lasts for in seconds. Not specifying a duration makes the animation never stop. Specifying `0` makes the animation stop. Note that there is a known bug where the tile remains in the animation once it has completed if duration is nonzero.
 `:power_on` | boolean |  | true | Switch any selected device that is off to on before performing the effect.
@@ -170,8 +170,8 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
-`:color` | string | &#10004; |  | The color to use for the pulse effect.
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
+`:color` | string | &#10004; |  | The color to use for the pulse effect. See [color](https://api.developer.lifx.com/docs/colors) documentation on the LIFX website.
 `:from_color` | string |  | current bulb color | The color to start the effect from. If this parameter is omitted then the color the bulb is currently set to is used instead.
 `:period` | numeric |  | 1.0 | The time in seconds for one cyles of the effect.
 `:cycles` | numeric |  | 1.0 | The number of times to repeat the effect.
@@ -184,7 +184,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:power_off` | boolean |  | false | If `true`, the devices will also be turned off.
 
 ### cycle
@@ -193,7 +193,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website
+`:selector` | selector |  | all | See [selector](https://api.developer.lifx.com/docs/selectors) documentation on the LIFX website.
 `:states` | array of hashes | &#10004; |  | Array of state hashes as per `#set_state`. Must have 2 to 5 entries.
 `:defaults` | hash |  |  | Default values to use when not specified in each `states[]` object.
 `:direction` | direction |  | forward | Direction in which to cycle through the list. Can be `forward` or `backward`.
@@ -219,7 +219,7 @@ Key | Type | Mandatory | Default | Description
 
 Key | Type | Mandatory | Default | Description
 --- | --- | --- | --- | ---
-`:color` | color | &#10004; |  | Color string you'd like to validate
+`:color` | color | &#10004; |  | Color string you'd like to validate. See [color](https://api.developer.lifx.com/docs/colors) documentation on the LIFX website.
 
 
 ## Deviation from the API spec

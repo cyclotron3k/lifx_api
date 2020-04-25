@@ -17,7 +17,7 @@ class LifxApi
 			power: {type: :string, description: 'The power state you want to set on the selector. Must be `on` or `off`.'},
 			color: {type: :color, description: 'The color to set the light to.'},
 			brightness: {type: :numeric, description: 'The brightness level from 0.0 to 1.0. Overrides any brightness set in color (if any).'},
-			duration: {type: :numeric, default_description: '1.0', description: 'How long in seconds you want the power action to take. Range: 0.0 - 3155760000.0 (100 years)'},
+			duration: {type: :numeric, default_description: '1.0', description: 'How long in seconds you want the power action to take. Range: `0.0` - `3155760000.0` (100 years)'},
 			infrared: {type: :numeric, description: 'The maximum brightness of the infrared channel from `0.0` to `1.0`.'},
 			fast: {type: :boolean, default_description: 'false', description: 'Execute the query fast, without initial state checks and wait for no results.'},
 		},
